@@ -40,4 +40,20 @@ module SessionsHelper
     @current_user = nil
   end
 
+  # Возвращает true, если данный пользователь является текущим
+  def current_user?(user)
+    user == current_user
+  end
+
+  # Перенаправляет по сохр. адресу или на стр. по умолч.
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)   # т.к. нет return => эта стр. выполнится!
+  end
+
+  # Запоминает URL
+  def store_location
+    session[:forwarding_url] = request.url if request.get?
+  end
+
 end
