@@ -21,6 +21,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     get edit_user_path(@user)           # незар. польз. посещ. эту стр.  # p_371
     log_in_as(@user)                    # регистрируется
     assert_redirected_to edit_user_path(@user)    # должна открыться та стр.!
+    assert session[:forwarding_url].nil?   # обнуление запомн. url при переходе
     name  = "Foo Bar"
     email = "foo@bar.com"
     patch user_path(@user), params: { user: { name: name,
