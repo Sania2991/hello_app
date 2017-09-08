@@ -17,9 +17,9 @@ class UsersController < ApplicationController
     #VS @user = User.new(params[:user])   # не окончательная реализация!
     @user = User.new(user_params)
     if @user.save
-      log_in @user
-      flash[:success] = "Welcome to the Sample App!"    # кратковр. сообщение
-      redirect_to @user     #VS redirect_touser_url(@user)
+      @user.send_activation_email
+      flash[:info] = "Please check yout email to activate your account."
+      redirect_to root_url
     else
       render 'new'
     end
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
-      redirect_to @user
+      redirect_to @user     #VS redirect_touser_url(@user)
     else
       render 'edit'
     end

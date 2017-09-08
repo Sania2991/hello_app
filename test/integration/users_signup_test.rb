@@ -2,6 +2,11 @@ require 'test_helper'
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
 
+  def setup
+    # т.к. deliveries - глобальный, очищаем его
+    ActionMailer::Base.deliveries.clear
+  end
+
   test "invalid signup information" do
     get signup_path
     assert_no_difference 'User.count' do
@@ -23,6 +28,23 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                  password: "password",
                                  passowrd_confirmation: "password"} }
     end
+    # Проверяет, что доставлено точно одно письмо
+    assert_equal 1, ActionMailer::Base.deliveries.size
+    # Получ. доступ к перем. экземпл, например из котр. Users#create: пер. @user
+    user = assigns(:user)
+    assert_not user.activated?
+    # Попытаться выполнить вход до активации
+    log_in_as(user)
+    assert_not is_logged_in?
+    # Недопустимый токен активации
+    get edit_account_activation_path("invalid token", email: user.email)
+    assert_not is_logged_in?
+    # Допустимый токен, неверный адрес электр. почты
+    get edit_account_activation_path(user.activation_token, email: 'wrong')
+    assert_not is_logged_in?
+    # Допустимый токен
+    get edit_account_activation_path(user.activation_token, email: user.email)
+    assert user.reload.activated?
     follow_redirect!
     assert_template 'users/show'
     assert is_logged_in?
