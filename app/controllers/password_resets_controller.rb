@@ -49,7 +49,15 @@ class PasswordResetsController < ApplicationController
 
     # Подтверждает допустимость пользователя
     def valid_user
-      unless (@user && @user.activated?)
+      puts "***************************************"
+      puts @user
+      puts @user.activated?
+      puts @user.authenticated?(:reset, params[:id])
+      puts params[:id]
+      puts "***************************************"
+      debugger
+      unless (@user && @user.activated? &&
+              @user.authenticated?(:reset, params[:id]))
         redirect_to root_url
       end
     end
