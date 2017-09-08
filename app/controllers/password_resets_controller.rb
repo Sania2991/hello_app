@@ -49,10 +49,9 @@ class PasswordResetsController < ApplicationController
 
     # Подтверждает допустимость пользователя
     def valid_user
-      # unless (@user && @user.activated? &&
-      #         @user.authenticated?(:reset, params[:id]))
-      #   redirect_to root_url
-      # end
+      unless (@user && @user.activated?)
+        redirect_to root_url
+      end
     end
 
     # проверяет срок действия токена
