@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    redirect_to root_url and return unless @user.activated?   # 454
     #debugger   #останавл. программу, открыв. консоль, cnrl-D - выход.
   end
 
@@ -44,14 +45,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
-      redirect_to @user     #VS redirect_touser_url(@user)
+      redirect_to @user     #VS redirect_to user_url(@user)
     else
       render 'edit'
     end
   end
 
   def index
-    @users = User.paginate(page: params[:page]) #vs User.all
+    @users = User.where(activated: true).paginate(page: params[:page])  #where!
   end
 
   private
