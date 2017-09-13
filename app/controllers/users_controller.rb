@@ -5,11 +5,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-<<<<<<< HEAD
     redirect_to root_url and return unless @user.activated?   # 454
-=======
     @microposts = @user.microposts.paginate(page: params[:page])
->>>>>>> 81f635460150d574f1ccb349ab4bf821de25e865
     #debugger   #останавл. программу, открыв. консоль, cnrl-D - выход.
   end
 
