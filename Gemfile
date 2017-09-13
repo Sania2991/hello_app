@@ -10,7 +10,7 @@ end
 gem 'rails',  '~> 5.1.3'
 gem 'bcrypt', '3.1.11'
 gem 'faker',  '1.6.6'
-# gem 'fog-dropbox'
+gem 'fog-dropbox'
 # генератор для созд. загруж. изобр.
 gem 'fog',                     '1.38.0'
 gem 'carrierwave',             '0.11.2'
