@@ -1,0 +1,5 @@
+export APP_KEY="65wnoxrfsp69cpv"
+export APP_SECRET="0u3qoqaigf8cwia"
+export ACCESS_TOKEN="5nto6s8jj2wygzox"
+export ACCESS_TOKEN_SECRET="e82gwakp2e9ucli"
+export USER_ID="255856942"
