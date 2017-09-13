@@ -1,10 +1,10 @@
 if Rails.env.production?
   CarrierWave.configure do |config|
-    config.fog_credentials = {
-      :provider                  => 'DROPBOX',
-      :dropbox_access_key_id     => '65wnoxrfsp69cpv',
-      :dropbox_secret_access_key => '0u3qoqaigf8cwia'
-    }
-    config.fog_directory         =  '_eKYh48f5XkAAAAAAAAq48fhBbZaDm8u-U6G7bl79vZLPg7jfeySHPhdDX5Y5nVA'
+    config.dropbox_app_key = ENV["APP_KEY"]
+    config.dropbox_app_secret = ENV["APP_SECRET"]
+    config.dropbox_access_token = ENV["ACCESS_TOKEN"]
+    config.dropbox_access_token_secret = ENV["ACCESS_TOKEN_SECRET"]
+    config.dropbox_user_id = ENV["USER_ID"]
+    config.dropbox_access_type = "dropbox"
   end
 end

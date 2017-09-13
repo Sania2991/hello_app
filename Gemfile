@@ -14,6 +14,8 @@ gem 'fog-dropbox'
 # генератор для созд. загруж. изобр.
 gem 'fog',                     '1.38.0'
 gem 'carrierwave',             '0.11.2'
+# Carrierwave uploads on Dropbox
+gem 'carrierwave-dropbox'
 # изменение размеров изобр.
 gem 'mini_magick',             '4.5.1'
 # выгрузка изображ.

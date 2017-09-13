@@ -67,6 +67,9 @@ GEM
       json (>= 1.7)
       mime-types (>= 1.16)
       mimemagic (>= 0.3.0)
+    carrierwave-dropbox (1.2.1)
+      carrierwave (~> 0.9)
+      dropbox-sdk (~> 1.6)
     childprocess (0.7.1)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.2)
@@ -386,6 +389,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   carrierwave (= 0.11.2)
+  carrierwave-dropbox
   coffee-rails (~> 4.2)
   faker (= 1.6.6)
   fog (= 1.38.0)
