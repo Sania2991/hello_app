@@ -9,10 +9,17 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails',  '~> 5.1.3'
 gem 'bcrypt', '3.1.11'
-gem 'jquery-rails'
 gem 'faker',  '1.6.6'
+#gem 'fog-dropbox'
+# генератор для созд. загруж. изобр.
+gem 'carrierwave',             '0.11.2'
+# изменение размеров изобр.
+gem 'mini_magick',             '4.5.1'
+# выгрузка изображ.
+gem 'fog',                     '1.38.0'
 gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
+gem 'jquery-rails'
 # Use Puma as the app server
 gem 'bootstrap-sass', '3.3.6'
 # Use SCSS for stylesheets
