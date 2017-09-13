@@ -10,13 +10,13 @@ end
 gem 'rails',  '~> 5.1.3'
 gem 'bcrypt', '3.1.11'
 gem 'faker',  '1.6.6'
-#gem 'fog-dropbox'
+# gem 'fog-dropbox'
 # генератор для созд. загруж. изобр.
+gem 'fog',                     '1.38.0'
 gem 'carrierwave',             '0.11.2'
 # изменение размеров изобр.
 gem 'mini_magick',             '4.5.1'
 # выгрузка изображ.
-gem 'fog',                     '1.38.0'
 gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem 'jquery-rails'
