@@ -23,3 +23,6 @@
 
 # Ignore Spring files.
 /spring/*.pid
+
+# Пропуск загруженных тестовых изображений
+/public/uploads
