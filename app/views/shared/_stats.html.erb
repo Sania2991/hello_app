@@ -1,0 +1,19 @@
+<% @user ||= current_user %>
+<div class="stats">
+  <!-- Польз. подписан на -->
+  <a href="<%= following_user_path(@user) %>">
+    <!-- id - обязателен!!! для Ajax-запросов -->
+    <strong id="following" class="stat">
+      <%= @user.following.count %>
+    </strong>
+    following
+  </a>
+  <!-- Подписано на польз. -->
+  <a href="<%= followers_user_path(@user) %>">
+    <strong id="followers" class="stat">
+      <!-- подсчет читаемых -->
+      <%= @user.followers.count %>
+    </strong>
+    followers
+  </a>
+</div>
