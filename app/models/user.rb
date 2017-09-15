@@ -71,11 +71,11 @@ class User < ApplicationRecord
   def feed
     #- p_559. Micropost.where("user_id = ?", id)
     #- неэффективна, если > 5000 чел.
-    #- p_561 Micropost.where("user_id IN (?) OR user_id = ?", following_ids, id)
-    following_ids = "SELECT followed_id FROM relationships
-                     WHERE follower_id = :user_id"
-    Micropost.where("user_id IN (#{following_ids})
-                     OR user_id = :user_id", user_id: id)
+    Micropost.where("user_id IN (?) OR user_id = ?", following_ids, id)
+    # following_ids = "SELECT followed_id FROM relationships
+    #                  WHERE follower_id = :user_id"
+    # Micropost.where("user_id IN (#{following_ids})
+    #                  OR user_id = :user_id", user_id: id)
   end
 
   # Выполняет подписку на сообщения пользователя
