@@ -1,11 +1,11 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
-  has_many :active_relationships, class_name:  "Relationship",
-                                  foreign_key: "follower_id",
-                                  dependent:   :destroy
+  has_many :active_relationships,  class_name:  "Relationship",
+                                   foreign_key: "follower_id",
+                                   dependent:   :destroy
   has_many :passive_relationships, class_name:  "Relationship",
-                                  foreign_key: "followed_id",
-                                  dependent:   :destroy
+                                   foreign_key: "followed_id",
+                                   dependent:   :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
   attr_accessor :remember_token, :activation_token, :reset_token
@@ -68,9 +68,14 @@ class User < ApplicationRecord
   end
 
   # Определяет прото-ленту.
-  # Полная реализация приводится в разделе  "Следование за пользователями"
   def feed
-    Micropost.where("user_id = ?", id)
+    #- p_559. Micropost.where("user_id = ?", id)
+    #- неэффективна, если > 5000 чел.
+    #- p_561 Micropost.where("user_id IN (?) OR user_id = ?", following_ids, id)
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE follower_id = :user_id"
+    Micropost.where("user_id IN (#{following_ids})
+                     OR user_id = :user_id", user_id: id)
   end
 
   # Выполняет подписку на сообщения пользователя

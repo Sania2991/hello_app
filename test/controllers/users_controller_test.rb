@@ -64,4 +64,15 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_not @other_user.reload.admin?
   end
 
+  # # Требуем авторизации польз. для просмотра
+  # test "should redirect following when not logged in" do
+  #   get following_user_path(@user)
+  #   assert_redirected_to login_url
+  # end
+
+  # test "should redirect followers when not logged in" do
+  #   get followers_user_path(@user)
+  #   assert_redirected_to login_url
+  # end
+
 end
