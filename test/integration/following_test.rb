@@ -57,7 +57,7 @@ class FollowingTest < ActionDispatch::IntegrationTest
 
   test "feed on Home page" do
     get root_path
-    puts response.body
+    # puts response.body
     @user.feed.paginate(page: 1).each do |micropost|
       #asset_match CGI.escapeHTML
       #debugger
